@@ -23,6 +23,7 @@
           readonly="readonly"
           :value="item.currency"
           data-key="currency"
+          @input="isNum"
         )
 </template>
 <script>
@@ -31,6 +32,13 @@ export default {
   props: {
     endData: {
       type: Array
+    }
+  },
+  methods: {
+    isNum (e) {
+      const val = e.target.value
+      if (val.trim() === '') return
+      if (!Number.isInteger(parseInt(val))) e.target.value = ''
     }
   }
 }
